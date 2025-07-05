@@ -1,0 +1,295 @@
+{% extends 'navbar.html' %} {% block title %}{{ product.name }} - ShopBridge{%
+endblock %} {% block extra_css %} .product-container { max-width: 1200px;
+margin: 0 auto; padding: 32px 24px; } .product-grid { display: grid;
+grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.product-image-section { position: sticky; top: 120px; }
+.product-image-container { background: rgba(246, 244, 238, 0.95);
+backdrop-filter: blur(4px); border: 0.8px solid rgba(214, 209, 194, 0.5);
+border-radius: 16px; padding: 24px; box-shadow: rgba(0, 0, 0, 0.1) 0px 8px 24px;
+overflow: hidden; } .product-image { width: 100%; height: 400px; object-fit:
+cover; border-radius: 12px; transition: transform 0.3s ease; }
+.product-image:hover { transform: scale(1.05); } .image-placeholder { width:
+100%; height: 400px; background: linear-gradient(135deg, #f0edde, #e2dece);
+border-radius: 12px; display: flex; align-items: center; justify-content:
+center; color: #527a66; font-size: 18px; font-weight: 500; }
+.product-info-section { background: rgba(246, 244, 238, 0.95); backdrop-filter:
+blur(4px); border: 0.8px solid rgba(214, 209, 194, 0.5); border-radius: 16px;
+padding: 32px; box-shadow: rgba(0, 0, 0, 0.1) 0px 8px 24px; } .product-badge {
+display: inline-block; background: linear-gradient(135deg, #265940, #4a7c59);
+color: #f0edde; padding: 6px 12px; border-radius: 20px; font-size: 12px;
+font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+margin-bottom: 16px; } .product-title { font-size: 36px; font-weight: 700;
+color: #265940; margin-bottom: 16px; line-height: 1.2; } .product-price {
+font-size: 32px; font-weight: 700; color: #265940; margin-bottom: 24px; display:
+flex; align-items: center; gap: 8px; } .price-currency { font-size: 20px; color:
+#527a66; font-weight: 500; } .product-description { color: #527a66; font-size:
+16px; line-height: 1.6; margin-bottom: 32px; padding: 20px; background:
+rgba(240, 237, 230, 0.5); border-radius: 12px; border-left: 4px solid #265940; }
+.product-features { margin-bottom: 32px; } .features-title { font-size: 18px;
+font-weight: 600; color: #265940; margin-bottom: 16px; display: flex;
+align-items: center; gap: 8px; } .features-list { list-style: none; padding: 0;
+} .features-list li { display: flex; align-items: center; gap: 12px;
+margin-bottom: 8px; color: #527a66; font-weight: 500; } .feature-icon { width:
+16px; height: 16px; color: #265940; flex-shrink: 0; } .quantity-section {
+margin-bottom: 32px; } .quantity-label { font-size: 16px; font-weight: 600;
+color: #265940; margin-bottom: 12px; display: block; } .quantity-controls {
+display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.quantity-btn { width: 40px; height: 40px; background: #265940; color: #f0edde;
+border: none; border-radius: 8px; font-size: 18px; font-weight: 600; cursor:
+pointer; transition: all 0.2s; display: flex; align-items: center;
+justify-content: center; } .quantity-btn:hover { background: #4a7c59; transform:
+scale(1.05); } .quantity-input { width: 80px; height: 40px; text-align: center;
+font-size: 16px; font-weight: 600; border: 2px solid #d6d1c2; border-radius:
+8px; background: #f5f4ef; color: #265940; } .buy-button { width: 100%; height:
+56px; background: linear-gradient(135deg, #265940, #4a7c59); color: #f0edde;
+border: none; border-radius: 12px; font-size: 18px; font-weight: 600; cursor:
+pointer; transition: all 0.3s; display: flex; align-items: center;
+justify-content: center; gap: 12px; text-decoration: none; box-shadow: rgba(38,
+89, 64, 0.3) 0px 8px 24px; } .buy-button:hover { transform: translateY(-2px);
+box-shadow: rgba(38, 89, 64, 0.4) 0px 12px 32px; background:
+linear-gradient(135deg, #4a7c59, #265940); } .buy-icon { width: 24px; height:
+24px; } .back-link { display: inline-flex; align-items: center; gap: 8px; color:
+#527a66; text-decoration: none; font-weight: 500; margin-bottom: 24px;
+transition: color 0.2s; } .back-link:hover { color: #265940; } .back-icon {
+width: 20px; height: 20px; } /* Responsive design */ @media (max-width: 768px) {
+.product-container { padding: 20px 16px; } .product-grid {
+grid-template-columns: 1fr; gap: 32px; } .product-info-section,
+.product-image-container { padding: 20px; } .product-title { font-size: 28px; }
+.product-price { font-size: 24px; } .product-image-section { position: static; }
+} @media (max-width: 480px) { .product-title { font-size: 24px; } .product-price
+{ font-size: 20px; } .quantity-controls { justify-content: center; } } {%
+endblock %} {% block content %}
+<div class="product-container">
+  <!-- Back Navigation -->
+  <a href="/" class="back-link">
+    <svg
+      class="back-icon"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M15 19l-7-7 7-7"
+      />
+    </svg>
+    Mahsulotlarga qaytish
+  </a>
+
+  <div class="product-grid">
+    <!-- Product Image Section -->
+    <div class="product-image-section">
+      <div class="product-image-container">
+        {% if product.image1 %}
+        <img
+          src="{{ product.image1.url }}"
+          alt="{{ product.name }}"
+          class="product-image"
+        />
+        {% else %}
+        <div class="image-placeholder">
+          <svg
+            width="64"
+            height="64"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
+          </svg>
+          <span>Rasm mavjud emas</span>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Product Info Section -->
+    <div class="product-info-section">
+      <div class="product-badge">Yangi mahsulot</div>
+
+      <h1 class="product-title">{{ product.name }}</h1>
+
+      <div class="product-price">
+        {{ product.price|floatformat:0 }}
+        <span class="price-currency">so'm</span>
+      </div>
+
+      {% if product.description %}
+      <div class="product-description">
+        <p>{{ product.description }}</p>
+      </div>
+      {% endif %}
+
+      <!-- Product Features -->
+      <div class="product-features">
+        <h3 class="features-title">
+          <svg
+            class="feature-icon"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          Mahsulot xususiyatlari
+        </h3>
+        <ul class="features-list">
+          <li>
+            <svg
+              class="feature-icon"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            Bepul yetkazib berish
+          </li>
+          <li>
+            <svg
+              class="feature-icon"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            Kafolat bilan
+          </li>
+          <li>
+            <svg
+              class="feature-icon"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            24/7 qo'llab-quvvatlash
+          </li>
+          <li>
+            <svg
+              class="feature-icon"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            Tez yetkazib berish
+          </li>
+        </ul>
+      </div>
+
+      <!-- Quantity Selection -->
+      <div class="quantity-section">
+        <label class="quantity-label">Miqdor:</label>
+        <div class="quantity-controls">
+          <button
+            type="button"
+            class="quantity-btn"
+            onclick="decreaseQuantity()"
+          >
+            -
+          </button>
+          <input
+            type="number"
+            class="quantity-input"
+            id="quantity"
+            value="1"
+            min="1"
+            max="10"
+            readonly
+          />
+          <button
+            type="button"
+            class="quantity-btn"
+            onclick="increaseQuantity()"
+          >
+            +
+          </button>
+        </div>
+      </div>
+
+      <!-- Buy Button -->
+      <a href="{% url 'create_order' product.id %}" class="buy-button">
+        <svg
+          class="buy-icon"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+          />
+        </svg>
+        Buyurtma berish
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function increaseQuantity() {
+    const quantityInput = document.getElementById("quantity");
+    const currentValue = parseInt(quantityInput.value);
+    const maxValue = parseInt(quantityInput.max);
+
+    if (currentValue < maxValue) {
+      quantityInput.value = currentValue + 1;
+    }
+  }
+
+  function decreaseQuantity() {
+    const quantityInput = document.getElementById("quantity");
+    const currentValue = parseInt(quantityInput.value);
+    const minValue = parseInt(quantityInput.min);
+
+    if (currentValue > minValue) {
+      quantityInput.value = currentValue - 1;
+    }
+  }
+
+  // Update buy button URL with quantity
+  document.getElementById("quantity").addEventListener("change", function () {
+    const buyButton = document.querySelector(".buy-button");
+    const currentHref = buyButton.href.split("?")[0];
+    buyButton.href = currentHref + "?quantity=" + this.value;
+  });
+</script>
+{% endblock %}

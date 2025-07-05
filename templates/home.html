@@ -1,0 +1,193 @@
+{% extends 'navbar.html' %} {% block title %}Bosh Sahifa - ShopBridge{% endblock
+%} {% block extra_css %} .main-container { max-width: 1200px; margin: 0 auto;
+padding: 32px 24px; } .page-header { text-align: center; margin-bottom: 48px; }
+.page-title { color: #265940; font-size: 40px; font-weight: 700; margin-bottom:
+16px; background: linear-gradient(135deg, #265940, #4a7c59);
+-webkit-background-clip: text; -webkit-text-fill-color: transparent;
+background-clip: text; } .page-subtitle { color: #527a66; font-size: 18px;
+font-weight: 500; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+.products-container { display: grid; grid-template-columns: repeat(auto-fill,
+minmax(320px, 1fr)); gap: 32px; padding: 20px 0; } .product-card { background:
+rgba(246, 244, 238, 0.95); backdrop-filter: blur(4px); border: 0.8px solid
+rgba(214, 209, 194, 0.5); border-radius: 16px; box-shadow: rgba(0, 0, 0, 0.1)
+0px 8px 24px; overflow: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2,
+1); position: relative; } .product-card:hover { transform: translateY(-8px);
+box-shadow: rgba(0, 0, 0, 0.15) 0px 16px 40px; border-color: rgba(38, 89, 64,
+0.3); } .product-image-container { position: relative; width: 100%; height:
+240px; overflow: hidden; background: linear-gradient(135deg, #f0edde, #e2dece);
+} .product-image { width: 100%; height: 100%; object-fit: cover; transition:
+transform 0.3s ease; } .product-card:hover .product-image { transform:
+scale(1.05); } .no-image { width: 100%; height: 100%; display: flex;
+flex-direction: column; align-items: center; justify-content: center; color:
+#527a66; font-size: 16px; font-weight: 500; gap: 12px; } .no-image-icon { width:
+48px; height: 48px; color: #82967d; } .product-badge { position: absolute; top:
+12px; right: 12px; background: linear-gradient(135deg, #265940, #4a7c59); color:
+#f0edde; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight:
+600; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: rgba(0, 0, 0,
+0.1) 0px 4px 12px; } .product-info { padding: 24px; position: relative; }
+.product-name-link { text-decoration: none; color: inherit; transition: color
+0.3s ease; } .product-name-link:hover { color: #265940; } .product-name {
+font-size: 20px; font-weight: 600; margin-bottom: 12px; line-height: 1.3; color:
+#1b3226; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient:
+vertical; overflow: hidden; } .product-price-container { display: flex;
+align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.product-price { font-size: 24px; font-weight: 700; color: #265940; display:
+flex; align-items: center; gap: 4px; } .price-currency { font-size: 16px; color:
+#527a66; font-weight: 500; } .product-actions { display: flex; gap: 12px; }
+.btn-primary { flex: 1; background: linear-gradient(135deg, #265940, #4a7c59);
+color: #f0edde; border: none; padding: 12px 16px; border-radius: 8px;
+font-weight: 600; font-size: 14px; text-decoration: none; text-align: center;
+transition: all 0.2s ease; display: flex; align-items: center; justify-content:
+center; gap: 8px; } .btn-primary:hover { transform: translateY(-1px);
+box-shadow: rgba(38, 89, 64, 0.3) 0px 8px 20px; background:
+linear-gradient(135deg, #4a7c59, #265940); color: #f0edde; } .btn-secondary {
+background: rgba(38, 89, 64, 0.1); color: #265940; border: 1px solid rgba(38,
+89, 64, 0.2); padding: 12px; border-radius: 8px; font-weight: 600; font-size:
+14px; text-decoration: none; transition: all 0.2s ease; display: flex;
+align-items: center; justify-content: center; } .btn-secondary:hover {
+background: rgba(38, 89, 64, 0.15); border-color: rgba(38, 89, 64, 0.3); color:
+#265940; } .btn-icon { width: 16px; height: 16px; } .no-products { grid-column:
+1 / -1; text-align: center; color: #527a66; background: rgba(246, 244, 238,
+0.95); backdrop-filter: blur(4px); padding: 64px 32px; border-radius: 16px;
+border: 0.8px solid rgba(214, 209, 194, 0.5); box-shadow: rgba(0, 0, 0, 0.1) 0px
+8px 24px; } .no-products-icon { width: 80px; height: 80px; color: #82967d;
+margin: 0 auto 24px; } .no-products h3 { color: #265940; margin-bottom: 16px;
+font-size: 28px; font-weight: 700; } .no-products p { font-size: 18px;
+line-height: 1.6; max-width: 400px; margin: 0 auto; } /* Responsive design */
+@media (max-width: 768px) { .main-container { padding: 20px 16px; }
+.products-container { grid-template-columns: repeat(auto-fill, minmax(280px,
+1fr)); gap: 24px; } .page-title { font-size: 32px; } .page-subtitle { font-size:
+16px; } .product-info { padding: 20px; } .product-name { font-size: 18px; }
+.product-price { font-size: 20px; } .product-image-container { height: 200px; }
+} @media (max-width: 480px) { .products-container { grid-template-columns: 1fr;
+gap: 20px; } .product-image-container { height: 180px; } .product-actions {
+flex-direction: column; } .btn-secondary { padding: 12px 16px; } .page-title {
+font-size: 28px; } .no-products { padding: 48px 24px; } .no-products h3 {
+font-size: 24px; } .no-products p { font-size: 16px; } } {% endblock %} {% block
+content %}
+<div class="main-container">
+  <div class="page-header">
+    <h1 class="page-title">Hamma Mahsulotlar</h1>
+    <p class="page-subtitle">
+      Eng sifatli va zamonaviy mahsulotlar bilan tanishing. Har bir mahsulot
+      ehtiyoj va talablaringizni qondirish uchun tanlab olingan.
+    </p>
+  </div>
+
+  <div class="products-container">
+    {% for product in products %}
+    <div class="product-card">
+      <div class="product-image-container">
+        {% if product.image1 %}
+        <img
+          src="{{ product.image1.url }}"
+          alt="{{ product.name }}"
+          class="product-image"
+        />
+        {% else %}
+        <div class="no-image">
+          <svg
+            class="no-image-icon"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
+          </svg>
+          <span>Rasm mavjud emas</span>
+        </div>
+        {% endif %}
+        <div class="product-badge">Yangi</div>
+      </div>
+
+      <div class="product-info">
+        <h3 class="product-name">
+          <a
+            href="{% url 'product_detail' product.id %}"
+            class="product-name-link"
+          >
+            {{ product.name }}
+          </a>
+        </h3>
+
+        <div class="product-price-container">
+          <div class="product-price">
+            {{ product.price|floatformat:0 }}
+            <span class="price-currency">so'm</span>
+          </div>
+        </div>
+
+        <div class="product-actions">
+          <a href="{% url 'product_detail' product.id %}" class="btn-primary">
+            <svg
+              class="btn-icon"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+              />
+            </svg>
+            Ko'rish
+          </a>
+          <a
+            href="{% url 'create_order' product.id %}"
+            class="btn-secondary"
+            title="Buyurtma berish"
+          >
+            <svg
+              class="btn-icon"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="no-products">
+      <svg
+        class="no-products-icon"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+        />
+      </svg>
+      <h3>Mahsulotlar topilmadi</h3>
+      <p>
+        Hozircha mahsulot mavjud emas. Tez orada yangi mahsulotlar qo'shiladi.
+      </p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

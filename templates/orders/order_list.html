@@ -1,0 +1,142 @@
+{% extends 'navbar.html' %}
+
+{% block title %}Buyurtmalar - Evo Market{% endblock %}
+
+{% block content %}
+<style>
+    .page-title {
+        color: #333;
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .orders-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .order-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .order-card {
+        background-color: white;
+        padding: 25px;
+        margin-bottom: 20px;
+        border-left: 5px solid #2d5016;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .order-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .order-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    .order-field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .order-label {
+        font-weight: 600;
+        color: #555;
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .order-value {
+        color: #333;
+        font-size: 16px;
+    }
+
+    .order-detail-link {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: #2d5016;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .order-detail-link:hover {
+        background-color: #1f3a0f;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(45, 80, 22, 0.3);
+    }
+
+    .no-orders {
+        text-align: center;
+        color: #666;
+        font-size: 18px;
+        margin-top: 50px;
+        background-color: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+        .order-info {
+            grid-template-columns: 1fr;
+        }
+
+        .page-title {
+            font-size: 28px;
+        }
+    }
+</style>
+
+<div class="orders-container">
+    <h2 class="page-title">Buyurtmalar Ro'yxati</h2>
+
+    {% if orders %}
+        <ul class="order-list">
+            {% for order in orders %}
+                <li class="order-card">
+                    <div class="order-info">
+                        <div class="order-field">
+                            <span class="order-label">Buyurtma ID:</span>
+                            <span class="order-value">#{{ order.id }}</span>
+                        </div>
+                        <div class="order-field">
+                            <span class="order-label">Sana:</span>
+                            <span class="order-value">{{ order.created_at|date:"d-m-Y H:i" }}</span>
+                        </div>
+                        <div class="order-field">
+                            <span class="order-label">Mahsulot:</span>
+                            <span class="order-value">{{ order.product.name }}</span>
+                        </div>
+                        <div class="order-field">
+                            <span class="order-label">Holat:</span>
+                            <span class="order-value">{{ order.status }}</span>
+                        </div>
+                    </div>
+                    <a href="{% url 'order_detail' order.id %}" class="order-detail-link">
+                        Batafsil Ko'rish
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="no-orders">
+            <h3>Buyurtmalar topilmadi</h3>
+            <p>Sizda hali hech qanday buyurtma yo'q.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

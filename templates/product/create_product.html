@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahsulot Qo'shish</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5dc; /* Bej rang */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        /* Django form.as_p uchun stillar */
+        form p {
+            margin-bottom: 20px;
+        }
+
+        form p label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        form p input[type="text"],
+        form p input[type="email"],
+        form p input[type="number"],
+        form p input[type="file"],
+        form p input[type="url"],
+        form p select,
+        form p textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #fafafa;
+            font-family: inherit;
+        }
+
+        form p input[type="text"]:focus,
+        form p input[type="email"]:focus,
+        form p input[type="number"]:focus,
+        form p input[type="url"]:focus,
+        form p select:focus,
+        form p textarea:focus {
+            outline: none;
+            border-color: #2d5016; /* To'q yashil */
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.1);
+        }
+
+        form p input[type="file"] {
+            border: 2px dashed #e0e0e0;
+            cursor: pointer;
+        }
+
+        form p input[type="file"]:hover {
+            border-color: #2d5016;
+            background-color: rgba(45, 80, 22, 0.05);
+        }
+
+        form p textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Checkbox va radio uchun */
+        form p input[type="checkbox"],
+        form p input[type="radio"] {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #2d5016; /* To'q yashil */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #1f3a0f; /* Yanada to'q yashil */
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(45, 80, 22, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Django error messages uchun */
+        .errorlist {
+            color: #d32f2f;
+            font-size: 12px;
+            list-style: none;
+            margin-top: 5px;
+        }
+
+        .errorlist li {
+            margin-bottom: 3px;
+        }
+
+        /* Help text uchun */
+        .helptext {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Mahsulot Qo'shish</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="submit-btn">Mahsulotni Qo'shish</button>
+        </form>
+    </div>
+</body>
+</html>
